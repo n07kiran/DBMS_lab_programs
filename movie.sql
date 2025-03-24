@@ -46,8 +46,6 @@ create table movies(
 	ON UPDATE CASCADE
 );
 
-desc movie_cast;
-
 create table movie_cast (
   act_id int ,
   mov_id int,
@@ -84,7 +82,8 @@ INSERT INTO director VALUES
 
 select * from director; 
 
-INSERT INTO movies VALUES
+INSERT INTO movies 
+VALUES
 (1001,'MANASU',2017,'KANNADA',201),
 (1002,'AAKASHAM',2015,'TELUGU',204),
 (1003,'KALIYONA',2008,'KANNADA',201),
@@ -92,8 +91,9 @@ INSERT INTO movies VALUES
 (1005,'HOME',2012,'ENGLISH',205),
 (1006,'OM',1998,'KANNADA',206);
 
-INSERT INTO movie_cast VALUES
-(106,1001,'Villian')
+INSERT INTO movie_cast 
+VALUES
+(106,1001,'Villian'),
 (101,1002,'HERO'),
 (101,1001,'HERO'),
 (103,1003,'HEROINE'),
@@ -127,7 +127,7 @@ WHERE d.dir_name = 'HITCHCOCK';
 2)Find the movie names where one or more actors acted in two or more movies.
 */
 
-SELECT m.mov_title,m FROM movies m
+SELECT m.mov_title FROM movies m
 NATURAL JOIN
 (SELECT DISTINCT mov_id FROM movie_cast mc 
  NATURAL JOIN  
@@ -151,8 +151,8 @@ WHERE m.mov_year < 2000
 						FROM movies m1
 						JOIN movie_cast mc1 on m1.mov_id = mc1.mov_id
 						WHERE m1.mov_year > 2015
-					)
-
+					);
+					
 /*
 4)Find the title of movies and number of stars for each movie that has at least one rating and 
 find the highest number of stars that movie received. Sort the result by movie title
