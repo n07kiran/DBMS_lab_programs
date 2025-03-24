@@ -62,10 +62,11 @@ INSERT INTO calldetail_partitioned VALUES
 (1234567890,'2024-02-23 04:30:00',12,'Work call'),
 (1234567890,'2020-07-23 03:30:00',12,'Work call');
 
---1.
+-- 1.
 SELECT * FROM calldetail
 WHERE call_start >= '2024-01-01 00:00:00' AND call_start < '2025-01-01 00:00:00';
---2.
+
+-- 2.
 EXPLAIN 
 SELECT * FROM calldetail
 WHERE call_start >= '2024-01-01 00:00:00' AND call_start < '2025-01-01 00:00:00';
@@ -78,24 +79,6 @@ WHERE call_start >= '2024-01-01 00:00:00' AND call_start < '2025-01-01 00:00:00'
 EXPLAIN 
 SELECT * FROM calldetail_partitioned
 WHERE call_start >= '2024-01-01 00:01:00' AND call_start < '2025-01-01 00:00:00';
-
---1.
-SELECT * FROM calldetail
-WHERE call_start >= '2024-01-01 00:00:00' AND call_start < '2025-01-01 00:00:00';
---2.
-EXPLAIN 
-SELECT * FROM calldetail
-WHERE call_start >= '2024-01-01 00:00:00' AND call_start < '2025-01-01 00:00:00';
-
--- 3.
-SELECT * FROM calldetail_partitioned
-WHERE call_start >= '2024-01-01 00:00:00' AND call_start < '2025-01-01 00:00:00';
-
---4.
-EXPLAIN 
-SELECT * FROM calldetail_partitioned
-WHERE call_start >= '2024-01-01 00:01:00' AND call_start < '2025-01-01 00:00:00';
-
 /*
 -- Output: 
 -- COMPARE THE ROWS column in output of Query 2 and 4.
